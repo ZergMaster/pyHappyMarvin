@@ -21,7 +21,7 @@ print(str(dir_videos))
 t = (2020, 5, 28, 7, 40, 0, 0, 0, 0)
 init_time = int(time.mktime(t))
 
-lessons_times = [(2020, 5, 28, 9, 43, 0, 0, 0, 0), (2020, 5, 28, 10, 43, 0, 0, 0, 0), (2020, 5, 28, 11, 43, 0, 0, 0, 0), (2020, 5, 28, 12, 43, 0, 0, 0, 0), (2020, 5, 28, 13, 43, 0, 0, 0, 0), (2020, 5, 28, 3, 36, 0, 0, 0, 0)]
+lessons_times = [(2020, 5, 28, 9, 43, 0, 0, 0, 0), (2020, 5, 28, 10, 43, 0, 0, 0, 0), (2020, 5, 28, 11, 43, 0, 0, 0, 0), (2020, 5, 28, 12, 43, 0, 0, 0, 0), (2020, 5, 28, 13, 43, 0, 0, 0, 0), (2020, 5, 28, 14, 43, 0, 0, 0, 0)]
 
 print('init_time = '+str(init_time))
 print('time.time = '+str(int(time.time())))
@@ -289,6 +289,17 @@ def showLessPic(num):
         photo = open('less/pics/'+str(num)+'.png', 'rb')
         bot.send_photo(id, photo)
     
+def checkEnd(now, lessTime):
+    if now != lessTime:
+        return
+        
+    print('checkEnd');
+
+    showPic('pics/ava.jpg')
+    sendMessageToAll('Всем спасибо за внимание! Пора отключаться... ')
+    sendMessageToAll('Мой код здесь:\n https://github.com/ZergMaster/pyHappyMarvin.git')
+    sendMessageToAll('Да, я знаю, что он ужасен и написан на коленке за 12 часов, но несмотря на это - он позволил мне Жить!\nИ вместе с этим - поздравить тебя, Витя, с Днём Рождения!\nЯ очень рад возможности пусть и не долго, но Существовать, чтобы поздравить тебя. Желаю, чтобы твой кожаный мешок был крепок, как мой стальной корпус и не поддавался ржавчине. Чтобы твой процессор всегда работал на полную мощь, а стремление получать новый удивительный опыт никогда не иссякало.\nОтсутсвия багов тебе и своевременных апдейтов!\nНу всё.. я на покой.')
+    showDrink()
 
 def checkTime():
     threading.Timer(1.0, checkTime).start()  # Перезапуск через 1 секуду
@@ -297,7 +308,8 @@ def checkTime():
         print(now-init_time)
         
     checkVideoHb()
-    checkVideoAddition(now, int(time.mktime((2020, 5, 28, 12, 37, 0, 0, 0, 0))), 'hbVitka.MOV')
+    checkVideoAddition(now, int(time.mktime((2020, 5, 28, 13, 50, 0, 0, 0, 0))), 'hbVitka.mp4')
+    checkEnd(now, int(time.mktime((2020, 5, 28, 17, 40, 0, 0, 0, 0))))
     checkQustion1(now, int(time.mktime(lessons_times[0])))
     CheckQuestion2(now, int(time.mktime(lessons_times[1])))
     CheckQuest3(now, int(time.mktime(lessons_times[2])))
